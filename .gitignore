@@ -1,0 +1,9 @@
+Abirate_english_quotes/*
+data/*
+*.csv
+my-dataset-train.csv
+.ipynb_checkpoints/*
+
+qlora-out/*
+last_run_prepared/*
+wandb/*
