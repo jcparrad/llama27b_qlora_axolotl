@@ -1,8 +1,6 @@
 # run docker
 
-docker run --gpus '"all"' -p 8888:8888 -v /path/on/host:/path/in/container --rm -it winglian/axolotl:main-py3.10-cu118-2.0.1
-
-docker run --gpus '"all"' -p 8888:8888 -v /home/juan:/workspace --rm -it winglian/axolotl:main-py3.10-cu118-2.0.1
+docker run --gpus '"all"' -p 8888:8888 -v /home/jupyter:/workspace --rm -it winglian/axolotl:main-py3.10-cu118-2.0.1
 
 # Inside run jupyter
 pip install jupyter
@@ -26,5 +24,9 @@ accelerate launch -m axolotl.cli.train /workspace/llama27b_qlora_axolotl/llama2_
 python3 -m axolotl.cli.merge_lora /workspace/llama27b_qlora_axolotl/llama2_7b_quotes_qlora.yaml --lora_model_dir="./qlora-out" --load_in_8bit=False --load_in_4bit=False
 
 
+# inference
+docker run --gpus all -p 8888:8888 -p 8000:8000 -v /home/jupyter:/workspace -it --rm --ipc=host nvcr.io/nvidia/pytorch:23.10-py3
+pip install vllm
 
 
+ python -m vllm.entrypoints.api_server --model="/workspace/llama27b_qlora_axolotl/qlora-out/merged"
