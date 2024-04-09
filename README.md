@@ -1,3 +1,5 @@
+# This project trains llama2 1b, 13b or 70b models using qlora and axolotl framework
+
 # run docker
 
 docker run --gpus '"all"' -p 8888:8888 -v /home/jupyter:/workspace --rm -it winglian/axolotl:main-py3.10-cu118-2.0.1
