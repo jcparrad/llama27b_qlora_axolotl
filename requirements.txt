@@ -1,1 +1,4 @@
 jsonlines
+requests
+datasets 
+transformers[sentencepiece]
